@@ -1,14 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER Lantern Team <admin@getlantern.org>
 
-RUN apt-get update && apt-get install -y build-essential curl git apt-utils openjdk-8-jdk curl wget unzip file pkg-config lsof libpcap-dev libappindicator3-dev libwebkit2gtk-4.0-dev
-
-# The fpm packer. (https://rubygems.org/gems/fpm)
-RUN apt-get install -y ruby ruby-dev
-RUN gem install bundler -v '1.16.1'
-
-# Packages for Windows.
-RUN apt-get install -y mingw-w64 osslsigncode nsis
+RUN apt-get update && apt-get install -y build-essential curl git apt-utils openjdk-8-jdk curl wget unzip file pkg-config lsof libpcap-dev 
 
 # Environment variables
 ENV GOPATH /usr/local/gocode/
