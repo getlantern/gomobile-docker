@@ -28,11 +28,11 @@ ENV ANDROID_NDK_VERSION="r21c"
 
 # Install Android SDK
 RUN echo "Installing sdk tools ${ANDROID_SDK_TOOLS_VERSION}" && \
-    wget --quiet --output-document=sdk-tools.zip \
-        "https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip" && \
-    mkdir --parents "$ANDROID_HOME" && \
-    unzip -q sdk-tools.zip -d "$ANDROID_HOME" && \
-    rm --force sdk-tools.zip
+  wget --quiet --output-document=sdk-tools.zip \
+      "https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip" && \
+  mkdir --parents "$ANDROID_HOME" && \
+  unzip -q sdk-tools.zip -d "$ANDROID_HOME" && \
+  rm --force sdk-tools.zip
 
 # Install Android tools
 RUN yes | $ANDROID_BIN/sdkmanager --licenses
@@ -44,14 +44,14 @@ RUN $ANDROID_BIN/sdkmanager platforms\;android-28
 # Install Gradle
 ENV GRADLE_VERSION 6.4.1
 RUN cd /usr/local/ && \
-wget https://downloads.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && \
-unzip gradle-$GRADLE_VERSION-bin.zip && \
-mv gradle-$GRADLE_VERSION gradle && \
-rm gradle-$GRADLE_VERSION-bin.zip
+  wget https://downloads.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && \
+  unzip gradle-$GRADLE_VERSION-bin.zip && \
+  mv gradle-$GRADLE_VERSION gradle && \
+  rm gradle-$GRADLE_VERSION-bin.zip
 
 ENV GO_VERSION 1.14.4
 
-RUN curl -sSL https://storage.googleapis.com/golang/go$GO_VERSION.linux-__GOARCH__.tar.gz | tar -xvzf - -C /usr/local
+RUN curl -sSL https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz | tar -xvzf - -C /usr/local
 
 # Install gomobile
 RUN go get golang.org/x/mobile/cmd/gomobile
