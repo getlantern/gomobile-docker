@@ -54,6 +54,10 @@ ENV GO_VERSION 1.14.4
 RUN curl -sSL https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz | tar -xvzf - -C /usr/local
 
 # Install gomobile
+ENV GOBIN=/usr/local/bin/
+ENV PATH $PATH:/usr/local/bin
 RUN go get golang.org/x/mobile/cmd/gomobile
 RUN go get golang.org/x/mobile/cmd/gobind
+RUN go install golang.org/x/mobile/cmd/gomobile
+RUN go install golang.org/x/mobile/cmd/gobind
 RUN gomobile init
