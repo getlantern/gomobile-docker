@@ -1,15 +1,9 @@
 FROM ubuntu:18.04
 MAINTAINER Lantern Team <admin@getlantern.org>
 
-RUN apt-get update && apt-get install -y build-essential curl git apt-utils openjdk-8-jdk curl wget unzip file pkg-config lsof libpcap-dev 
+RUN apt-get update && apt-get install -y build-essential curl git apt-utils openjdk-8-jdk curl wget unzip file pkg-config lsof libpcap-dev
 
 # Environment variables
-ENV GOPATH /usr/local/gocode/
-ENV PATH $PATH:/usr/local/go/bin
-ENV PATH $PATH:$GOPATH/bin
-
-# Environment variables
-ENV GRADLE_VERSION 6.4.1
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /usr/local/gradle
 ENV PATH $PATH:$ANDROID_HOME/tools
@@ -48,6 +42,7 @@ RUN yes | $ANDROID_BIN/sdkmanager ndk-bundle
 RUN $ANDROID_BIN/sdkmanager platforms\;android-28
 
 # Install Gradle
+ENV GRADLE_VERSION 6.4.1
 RUN cd /usr/local/ && \
 wget https://downloads.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && \
 unzip gradle-$GRADLE_VERSION-bin.zip && \
